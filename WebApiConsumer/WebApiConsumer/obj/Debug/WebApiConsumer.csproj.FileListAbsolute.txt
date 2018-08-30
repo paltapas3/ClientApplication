@@ -35,3 +35,4 @@ D:\ConsumerApp\WebApiConsumer\WebApiConsumer\bin\System.Web.Helpers.xml
 D:\ConsumerApp\WebApiConsumer\WebApiConsumer\bin\System.Web.Mvc.xml
 D:\ConsumerApp\WebApiConsumer\WebApiConsumer\obj\Debug\WebApiConsumer.dll
 D:\ConsumerApp\WebApiConsumer\WebApiConsumer\obj\Debug\WebApiConsumer.pdb
+D:\ConsumerApp\WebApiConsumer\WebApiConsumer\bin\MySql.Data.dll
