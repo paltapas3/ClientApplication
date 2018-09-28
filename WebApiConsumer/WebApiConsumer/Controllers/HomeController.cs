@@ -72,7 +72,8 @@ namespace WebApiConsumer.Controllers
         [HttpPost]
         public async Task<ActionResult> Insert(User obj)
         {
-            List<User> data = new List<Models.User>();
+           // List<User> data = new List<Models.User>();
+            User data = new Models.User();
             using (var client = new HttpClient())
             {
                 //Passing service base url  
@@ -82,8 +83,9 @@ namespace WebApiConsumer.Controllers
                 //Define request data format  
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                //Sending request to find web api REST service resource GetAllEmployees using HttpClient  
-                HttpResponseMessage Res = await client.PostAsJsonAsync("api/UserAccounts", obj);
+                //Sending request to find web api REST service resource GetAllEmployees using HttpClient
+                //string output = JsonConvert.SerializeObject(obj);
+                HttpResponseMessage Res = await client.PostAsJsonAsync<User>("api/UserAccounts", obj);
 
                 //Checking the response is successful or not which is sent using HttpClient  
                 if (Res.IsSuccessStatusCode)
@@ -91,7 +93,7 @@ namespace WebApiConsumer.Controllers
                     //Storing the response details recieved from web api   
                     var UserResponse = Res.Content.ReadAsStringAsync().Result;
                     //Deserializing the response recieved from web api and storing into the Employee list  
-                    data = JsonConvert.DeserializeObject<List<User>>(UserResponse);
+                    data = JsonConvert.DeserializeObject<User>(UserResponse);
                 }
             }
             return RedirectToAction("Index");
