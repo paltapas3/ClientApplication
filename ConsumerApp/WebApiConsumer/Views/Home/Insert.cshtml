@@ -1,0 +1,141 @@
+﻿@model WebApiConsumer.Models.User
+
+@{
+    ViewBag.Title = "Insert";
+}
+<div class="custom-header">
+    <h2>Enter Bank Account Details</h2>
+    <p class="navigation-link">
+        <i class="glyphicon glyphicon-circle-arrow-left"></i>
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</div>
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="col-xs-12">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-9">
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-9">
+                    @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.Pan, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-9">
+                    @Html.EditorFor(model => model.Pan, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Pan, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.Account_Type,"A/C type", htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-9">
+                    @Html.EditorFor(model => model.Account_Type, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Account_Type, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.Balance, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-9">
+                    @Html.EditorFor(model => model.Balance, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Balance, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-9">
+                    @Html.EditorFor(model => model.Gender, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-9">
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.DOB, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-9">
+                    @Html.EditorFor(model => model.DOB, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DOB, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.AccountNumber, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-9">
+                    @Html.EditorFor(model => model.AccountNumber, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.AccountNumber, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12">
+            <div class="form-group col-md-6">
+                <div class="col-md-offset-3 col-md-9">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+<style>
+    .col-xs-12 {
+        float:left;
+    }
+    .navigation-link {
+        float: right;
+        margin-right: 10px;
+    }
+    .navigation-link a {
+        color: #495057;
+        border-color: #dee2e6;
+        font-weight: 600;
+    }
+    .custom-header {
+        margin-bottom: 30px;
+        padding-top: 20px;
+        vertical-align: middle;
+        color: #495057;
+        background-color: #e9ecef;
+        border-color: #dee2e6;
+    }
+    .custom-header h2 {
+        margin: 0;
+        padding-bottom: 20px;
+        padding-left: 5px;
+        display: inline-block;
+    }
+    .navbar>.container .navbar-brand {
+            margin-left: -8px;
+    }
+    hr {
+        margin: 0;
+        border: none;
+    }
+    .table {
+        margin-bottom: 0;
+    }
+</style>

@@ -1,0 +1,110 @@
+﻿@model WebApiConsumer.Models.Transaction
+
+@{
+    ViewBag.Title = "FundTransfers";
+}
+
+<div class="custom-header">
+    <h2>Fund Transfer</h2>
+    <p class="navigation-link">
+        <i class="glyphicon glyphicon-circle-arrow-left"></i>
+        @Html.ActionLink("Back to List", "Index","Home")
+    </p>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+
+        <div class="col-xs-12">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.AccountNumber_Debited, "From A/C", htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-9">
+                    @Html.EditorFor(model => model.AccountNumber_Debited, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.AccountNumber_Debited, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.AccountNumber_Credited, "To A/C", htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-9">
+                    @Html.EditorFor(model => model.AccountNumber_Credited, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.AccountNumber_Credited, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.Amount, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div class="col-md-9">
+                    @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            
+        </div>        
+        
+        <div class="col-xs-12">
+            <div class="form-group col-md-6">
+                <div class="col-md-offset-3 col-md-9">
+                    <input type="submit" value="Confirm" class="btn btn-default" />
+                </div>
+            </div>
+        </div>  
+                  
+
+        
+    </div>
+}
+
+<style>
+    .col-xs-12 {
+        float: left;
+    }
+
+    .navigation-link {
+        float: right;
+        margin-right: 10px;
+    }
+
+        .navigation-link a {
+            color: #495057;
+            border-color: #dee2e6;
+            font-weight: 600;
+        }
+
+    .custom-header {
+        margin-bottom: 30px;
+        padding-top: 20px;
+        vertical-align: middle;
+        color: #495057;
+        background-color: #e9ecef;
+        border-color: #dee2e6;
+    }
+
+        .custom-header h2 {
+            margin: 0;
+            padding-bottom: 20px;
+            padding-left: 5px;
+            display: inline-block;
+        }
+
+    .navbar > .container .navbar-brand {
+        margin-left: -8px;
+    }
+
+    hr {
+        margin: 0;
+        border: none;
+    }
+
+    .table {
+        margin-bottom: 0;
+    }
+</style>

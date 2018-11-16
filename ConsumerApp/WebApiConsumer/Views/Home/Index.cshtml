@@ -1,0 +1,128 @@
+﻿@model IEnumerable<WebApiConsumer.Models.User>
+
+@{
+    ViewBag.Title = "Index";
+}
+<div class="custom-header">
+    <h2>User Bank Account Details</h2>
+</div>
+<p class="navigation-link">
+    @Html.ActionLink("Create New Account", "Insert")
+</p>
+<p class="navigation-link">
+    @Html.ActionLink("Fund Transfer", "FundTransfers", "Fund")
+</p>
+
+  <!--Modified UI -->
+<table class="table table-hover">
+  <thead class="thead-light">
+    <tr>
+        <th scope="col">User Name</th>
+        <th scope="col">Address</th>
+        <th scope="col">PAN</th>
+        <th scope="col">Account Type</th>
+        <th scope="col">Balance</th>
+        <th scope="col">Gender</th>
+        <th scope="col">Email ID</th>
+        <th scope="col">Date Of Birth</th>
+        <th scope="col">A/C Number</th>
+    </tr>
+  </thead>
+  <tbody>
+    @if (Model != null)
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td scope="row">
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pan)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Account_Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Balance)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gender)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DOB)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AccountNumber)
+                </td>
+            </tr>
+        }
+    }
+  </tbody>
+</table>
+<style>
+    .table .thead-light th {
+        color: #495057;
+        background-color: #e9ecef;
+        border-color: #dee2e6;
+    }
+    .navigation-link a {
+        color: #fff;
+        background-color: #337ab7;
+        border-color: #2e6da4;
+        display: inline-block;
+        padding: 6px 8px;
+        margin-bottom: 0;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.42857143;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        -ms-touch-action: manipulation;
+        touch-action: manipulation;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        background-image: none;
+        border: 1px solid transparent;
+        border-radius: 4px;
+    }
+    .custom-header {
+        margin-bottom: 30px;
+        padding-top: 20px;
+        vertical-align: middle;
+        color: #495057;
+        background-color: #e9ecef;
+        border-color: #dee2e6;
+    }
+    .custom-header h2 {
+        margin: 0;
+        padding-bottom: 20px;
+        padding-left: 5px;
+    }
+    .navbar>.container .navbar-brand {
+            margin-left: -8px;
+    }
+    hr {
+        margin: 0;
+    }
+    .table {
+        margin-bottom: 0;
+    }
+   p{
+ display:inline;
+ word-wrap: break-word;
+}
+</style>
+
+<!--End of Modified UI-->
+

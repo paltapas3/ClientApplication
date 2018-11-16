@@ -72,31 +72,64 @@ namespace WebApiConsumer.Controllers
         [HttpPost]
         public async Task<ActionResult> Insert(User obj)
         {
-           // List<User> data = new List<Models.User>();
-            User data = new Models.User();
-            using (var client = new HttpClient())
+           
+            obj.Id = 1;
+            if (ModelState.IsValid)
             {
-                //Passing service base url  
-                client.BaseAddress = new Uri("http://webapicoreservice-webapitest.193b.starter-ca-central-1.openshiftapps.com/");
-
-                client.DefaultRequestHeaders.Clear();
-                //Define request data format  
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                //Sending request to find web api REST service resource GetAllEmployees using HttpClient
-                //string output = JsonConvert.SerializeObject(obj);
-                HttpResponseMessage Res = await client.PostAsJsonAsync<User>("api/UserAccounts", obj);
-
-                //Checking the response is successful or not which is sent using HttpClient  
-                if (Res.IsSuccessStatusCode)
-                {
-                    //Storing the response details recieved from web api   
-                    var UserResponse = Res.Content.ReadAsStringAsync().Result;
-                    //Deserializing the response recieved from web api and storing into the Employee list  
-                    data = JsonConvert.DeserializeObject<User>(UserResponse);
+                await InsertUser(obj);
+                if (ModelState.IsValid) {
+                    return RedirectToAction("Index");
                 }
             }
-            return RedirectToAction("Index");
+            return View(obj);
+           
+        }
+
+        async Task InsertUser(User obj)
+        {
+            List<User> data = new List<Models.User>();
+            bool flag = true;
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://webapicoreservice-webapitest.193b.starter-ca-central-1.openshiftapps.com/");
+
+                //Getting user data
+                HttpResponseMessage Res = await client.GetAsync("api/UserAccounts");              
+                if (Res.IsSuccessStatusCode)
+                {                   
+                    var UserResponse = Res.Content.ReadAsStringAsync().Result;
+                  
+                    data = JsonConvert.DeserializeObject<List<User>>(UserResponse);
+
+                    foreach(User u in data)
+                    {
+                        if (obj.AccountNumber == u.AccountNumber)
+                        {
+                            flag = false;
+                            break;
+                        }
+                    }
+                }
+
+                //End
+                if (flag)
+                {
+                    HttpResponseMessage response = await client.PostAsJsonAsync("api/UserAccounts", obj);
+
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        User u = await response.Content.ReadAsAsync<User>();
+                    }
+
+                }
+                else
+                {
+                    ModelState.AddModelError("AccountNumber", "AccountNumber: "+obj.AccountNumber+" Already Exist!");
+                }
+                
+                
+            }
         }
 
 
@@ -107,6 +140,12 @@ namespace WebApiConsumer.Controllers
         //    TempData["Message"] = "User deleted successfully!";
         //    return RedirectToAction("Index");
         //}
+
+
+     
+
+
+
     }
 
 }
